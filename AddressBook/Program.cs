@@ -9,65 +9,78 @@ namespace AddressBook
 {
     class Program
     {
-        static void Main()
+        class AddressPrompt
         {
-            Console.WriteLine("Welcome to my address book program");
-            Console.WriteLine("*****************************");
-            Console.WriteLine("Make a choice \n 1)Enter Details \n2)Add Details");
+            AddressBook book;
 
-            switch (Console.ReadLine())
+            public AddressPrompt()
             {
-                case "1": // Check if user entered 1.
-                    Console.Clear(); // Clear the console screen.
-                    Console.WriteLine("Enter Details");
-                    EnterDetails();// Write you add "program" here.
-                    break; // Stop the switch loop.
-                case "2":
-                    Console.WriteLine("Remove");
-                    break;
-                default: // If user didn't enter 1 or 2 his choice isn't valid. Show a message.
-                    Console.WriteLine("The choice you made isn't valid, please try again.");
-                    break;
+                book = new AddressBook();
+            }
+
+            static void Main(string[] args)
+            {
+                string selection = "";
+                AddressPrompt prompt = new AddressPrompt();
+
+                prompt.displayMenu();
+                while (!selection.ToUpper().Equals("Q"))
+                {
+                    Console.WriteLine("Selection: ");
+                    selection = Console.ReadLine();
+                    prompt.performAction(selection);
+                }
+            }
+
+            void displayMenu()
+            {
+                Console.WriteLine("Main Menu");
+                Console.WriteLine("=========");
+                Console.WriteLine("A - Add an Address");
+                Console.WriteLine("D - Delete an Address");
+                Console.WriteLine("E - Edit an Address");
+                Console.WriteLine("L - List All Addresses");
+                Console.WriteLine("Q - Quit");
+            }
+
+            void performAction(string selection)
+            {
+                string firstname = "";
+                string lastname = "";
+                string address = "";
+                string city = "";
+                string state = "";
+                string zipcode = "";
+                string email = "";
+                switch (selection.ToUpper())
+                {
+                    case "A"://Add case
+                        Console.WriteLine("Enter First Name: ");
+                        firstname = Console.ReadLine();
+                        Console.WriteLine("Enter Last Name: ");
+                        lastname = Console.ReadLine();
+                        Console.WriteLine("Enter Address: ");
+                        address = Console.ReadLine();
+                        Console.WriteLine("Enter City: ");
+                        city = Console.ReadLine();
+                        Console.WriteLine("Enter State: ");
+                        state = Console.ReadLine();
+                        Console.WriteLine("Enter Zip code: ");
+                        zipcode = Console.ReadLine();
+                        Console.WriteLine("Enter Email Address: ");
+                        email = Console.ReadLine();
+                        if (book.add(firstname, lastname, address, city, state, zipcode, email))
+                        {
+                            Console.WriteLine("Address successfully added!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("An address is already on file for {0}.", firstname);
+                        }
+                        break;
+                }
             }
         }
-                      public static void EnterDetails()
-            {
-                Console.WriteLine("Please Enter your Firstname");
-                string str1 = "Firstname";
-                str1 = Console.ReadLine();
-                string valueString1 = str1;
-
-                Console.WriteLine("Please Enter your Lastname");
-                string str2 = "Lastname";
-                str2 = Console.ReadLine();
-                string valueString2 = str2;
-
-                Console.WriteLine("Please Enter your Address");
-                string str3 = "Address";
-                str3 = Console.ReadLine();
-                string valueString3 = str3;
-
-                Console.WriteLine("Please Enter your state");
-                string str5 = "state";
-                str5 = Console.ReadLine();
-                string valueString5 = str5;
-
-                Console.WriteLine("Please Enter your Pincode");
-                string str6 = "Pincode";
-                str6 = Console.ReadLine();
-                string valueString6 = str6;
-
-                Console.WriteLine("Here is a list of the stored names and addresees that you have entered so far");
-                Console.WriteLine("******************************************************************************");
-                Console.WriteLine("Lastname you entered: " + valueString2);
-                Console.WriteLine("Firstname you entered: " + valueString1);
-                Console.WriteLine("Address and house number and town you entered: " + valueString3);
-                Console.WriteLine("County you entered: " + valueString5);
-                Console.WriteLine("Postcode you entered: " + valueString6);
-                Console.ReadLine();
-
-
-                      }
     }
 }
         
