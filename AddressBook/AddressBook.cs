@@ -41,6 +41,45 @@ namespace AddressBook
                 return false;
             }
         }
+        /// <summary>
+        /// Removes the specified name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public bool remove(string name)
+        {
+            Address addr = find(name);
+
+            if (addr != null)
+            {
+                addresses.Remove(addr);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Lists the specified action.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        public void list(Action<Address> action)
+        {
+            addresses.ForEach(action);
+        }
+
+        public bool isEmpty()
+        {
+            return (addresses.Count == 0);
+        }
+
+
+        public Address find(string name)
+        {
+            Address addr = addresses.Find((a) => a.firstname == name);
+            return addr;
+        }
 
     }
 }
