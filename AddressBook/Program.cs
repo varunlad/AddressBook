@@ -78,6 +78,18 @@ namespace AddressBook
                             Console.WriteLine("An address is already on file for {0}.", firstname);
                         }
                         break;
+                    case "D"://Deleting case
+                        Console.WriteLine("Enter Name to Delete: ");
+                        firstname = Console.ReadLine();
+                        if (book.remove(firstname))
+                        {
+                            Console.WriteLine("Address successfully removed");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Address for {0} could not be found.", firstname);
+                        }
+                        break;
                 }
             }
         }

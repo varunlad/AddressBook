@@ -41,6 +41,20 @@ namespace AddressBook
                 return false;
             }
         }
+        public bool remove(string name)
+        {
+            Address addr = find(name);
+
+            if (addr != null)
+            {
+                addresses.Remove(addr);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }
