@@ -55,19 +55,19 @@ namespace AddressBook
                 switch (selection.ToUpper())
                 {
                     case "A"://Add case
-                        Console.WriteLine("Enter First Name: ");
+                        Console.Write("Enter First Name: ");
                         firstname = Console.ReadLine();
-                        Console.WriteLine("Enter Last Name: ");
+                        Console.Write("Enter Last Name: ");
                         lastname = Console.ReadLine();
-                        Console.WriteLine("Enter Address: ");
+                        Console.Write("Enter Address: ");
                         address = Console.ReadLine();
-                        Console.WriteLine("Enter City: ");
+                        Console.Write("Enter City: ");
                         city = Console.ReadLine();
-                        Console.WriteLine("Enter State: ");
+                        Console.Write("Enter State: ");
                         state = Console.ReadLine();
-                        Console.WriteLine("Enter Zip code: ");
+                        Console.Write("Enter Zip code: ");
                         zipcode = Console.ReadLine();
-                        Console.WriteLine("Enter Email Address: ");
+                        Console.Write("Enter Email Address: ");
                         email = Console.ReadLine();
                         if (book.add(firstname, lastname, address, city, state, zipcode, email))
                         {
@@ -98,7 +98,7 @@ namespace AddressBook
                         else
                         {
                             Console.WriteLine("Addresses:");
-                            book.list((a) => Console.WriteLine("First Name - ", a.firstname));
+                            book.list((a) => Console.WriteLine("First Name - " +a.firstname));
                             book.list((a) => Console.WriteLine("Last Name -" + a.lastname));
                             book.list((a) => Console.WriteLine("Address -" + a.address));
                             book.list((a) => Console.WriteLine("City -" + a.city));
