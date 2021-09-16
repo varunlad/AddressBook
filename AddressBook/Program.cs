@@ -55,19 +55,19 @@ namespace AddressBook
                 switch (selection.ToUpper())
                 {
                     case "A"://Add case
-                        Console.WriteLine("Enter First Name: ");
+                        Console.Write("Enter First Name: ");
                         firstname = Console.ReadLine();
-                        Console.WriteLine("Enter Last Name: ");
+                        Console.Write("Enter Last Name: ");
                         lastname = Console.ReadLine();
-                        Console.WriteLine("Enter Address: ");
+                        Console.Write("Enter Address: ");
                         address = Console.ReadLine();
-                        Console.WriteLine("Enter City: ");
+                        Console.Write("Enter City: ");
                         city = Console.ReadLine();
-                        Console.WriteLine("Enter State: ");
+                        Console.Write("Enter State: ");
                         state = Console.ReadLine();
-                        Console.WriteLine("Enter Zip code: ");
+                        Console.Write("Enter Zip code: ");
                         zipcode = Console.ReadLine();
-                        Console.WriteLine("Enter Email Address: ");
+                        Console.Write("Enter Email Address: ");
                         email = Console.ReadLine();
                         if (book.add(firstname, lastname, address, city, state, zipcode, email))
                         {
@@ -78,7 +78,61 @@ namespace AddressBook
                             Console.WriteLine("An address is already on file for {0}.", firstname);
                         }
                         break;
+                    case "D"://Deleting case
+                        Console.WriteLine("Enter Name to Delete: ");
+                        firstname = Console.ReadLine();
+                        if (book.remove(firstname))
+                        {
+                            Console.WriteLine("Address successfully removed");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Address for {0} could not be found."+ firstname);
+                        }
+                        break;
+                    case "L"://listing case
+                        if (book.isEmpty())
+                        {
+                            Console.WriteLine("There are no entries.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Addresses:");
+                            book.list((a) => Console.WriteLine("First Name - " +a.firstname));
+                            book.list((a) => Console.WriteLine("Last Name -" + a.lastname));
+                            book.list((a) => Console.WriteLine("Address -" + a.address));
+                            book.list((a) => Console.WriteLine("City -" + a.city));
+                            book.list((a) => Console.WriteLine("State -" + a.state));
+                            book.list((a) => Console.WriteLine("ZipCode -" + a.zipcode));
+                            book.list((a) => Console.WriteLine("Email -" + a.email));
+                            Console.WriteLine("================");
+                        }
+                        break;
+                    case "E"://Editing case
+                        Console.WriteLine("Enter Name to Edit: ");
+                        firstname = Console.ReadLine();
+                        Address addr = book.find(firstname);
+                        if (addr == null)
+                        {
+                            Console.WriteLine("Address for {0} count not be found." + firstname);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Address updated for {0}", firstname);
+                            Console.WriteLine("Enter new Address: ");
+                            addr.address = Console.ReadLine();
+                            Console.WriteLine("Enter new city: ");
+                            addr.city = Console.ReadLine();
+                            Console.WriteLine("Enter new state: ");
+                            addr.state = Console.ReadLine();
+                            Console.WriteLine("Enter new zipcode: ");
+                            addr.zipcode = Console.ReadLine();
+                            Console.WriteLine("Enter new Email: ");
+                            addr.email = Console.ReadLine();
+                        }
+                        break;
                 }
+            
             }
         }
     }
