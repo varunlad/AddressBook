@@ -8,13 +8,13 @@ namespace AddressBook
 {
     class Address
     {
-        public string firstname;
-        public string lastname;
-        public string address;
-        public string city;
-        public string state;
-        public string zipcode;
-        public string email;
+        public string firstname { get; set; }
+        public string lastname { get; set; }
+        public string address { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string zipcode { get; set; }
+        public string email { get; set; }
 
         public Address(string firstname, string lastname, string address, string city, string state, string zipcode, string email)
         {
@@ -26,5 +26,6 @@ namespace AddressBook
             this.zipcode = zipcode;
             this.email = email;
         }
+
     }
 }

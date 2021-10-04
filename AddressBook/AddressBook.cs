@@ -10,22 +10,12 @@ namespace AddressBook
     {
         List<Address> addresses;
 
+
         public AddressBook()
         {
             addresses = new List<Address>();
         }
-        /// <summary>
-        /// Adding All the Entries.
-        /// Adds the specified firstname.
-        /// </summary>
-        /// <param name="firstname">The firstname.</param>
-        /// <param name="lastname">The lastname.</param>
-        /// <param name="address">The address.</param>
-        /// <param name="city">The city.</param>
-        /// <param name="state">The state.</param>
-        /// <param name="zipcode">The zipcode.</param>
-        /// <param name="email">The email.</param>
-        /// <returns></returns>
+
         public bool add(string firstname, string lastname, string address, string city, string state, string zipcode, string email)
         {
             Address addr = new Address(firstname, lastname, address, city, state, zipcode, email);
@@ -42,5 +32,41 @@ namespace AddressBook
             }
         }
 
+        public bool remove(string name)
+        {
+            Address addr = find(name);
+
+            if (addr != null)
+            {
+                addresses.Remove(addr);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void list(Action<Address> action)
+        {
+            addresses.ForEach(action);
+        }
+
+        public bool isEmpty()
+        {
+            return (addresses.Count == 0);
+        }
+
+        public Address find(string name)
+        {
+            Address addr = addresses.Find((a) => a.firstname == name);
+            return addr;
+        }
+
+        public Address Search(string name)
+        {
+            Address addr = addresses.Find((a) => a.city == name);
+            return addr;
+        }
     }
 }
